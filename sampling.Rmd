@@ -1,5 +1,5 @@
 ---
-title: "class-2020-03-05"
+title: "Sampling"
 author: "Emily Ni"
 date: "3/5/2020"
 output: html_document
@@ -10,6 +10,8 @@ knitr::opts_chunk$set(echo = FALSE)
 library(googlesheets4)
 library(janitor)
 library(tidyverse)
+library(moderndive)
+library(infer)
 
 sheets_deauth()
 
@@ -20,14 +22,6 @@ sheets_deauth()
 x <- read_sheet(ss =  "14HmwN2cEVAJHupuehCuLdwG9BXtR3COrxDgaaylLhkA") %>% 
   clean_names() %>% 
   mutate(percent_red = red / (red + white))
-```
-
-```{r}
-x
-
-glimpse(x)
-
-summary(x)
 ```
 
 ```{r}
@@ -46,5 +40,10 @@ x %>%
         caption = "Classroom data from 2020-03-03",
         x = "Percentage of Red Beads Out of 25 Drawn",
         y = "Count") 
+```
+
+```{r}
+urn <- tibble(bean_ID = 1:10000,
+              color = c(rep("Red", 2000), rep("White", 8000)))
 ```
 
